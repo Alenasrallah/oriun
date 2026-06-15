@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -357,8 +357,6 @@
       padding-top: 4px;
     }
 
-    .svc__body {}
-
     .svc__tag {
       display: inline-block;
       margin-bottom: 14px;
@@ -526,8 +524,9 @@
     .clients__head {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 36px;
+      align-items: flex-start;
+      gap: 32px;
+      margin-bottom: 32px;
     }
 
     .clients__kicker {
@@ -536,93 +535,368 @@
       letter-spacing: .22em;
       text-transform: uppercase;
       color: rgba(255,255,255,.3);
+      margin-bottom: 14px;
+    }
+
+    .clients__headline {
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.07em;
+      line-height: .88;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .clients__headline em {
+      font-family: "Playfair Display", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: -.03em;
+      color: var(--purple-light);
+    }
+
+    .clients__desc {
+      font-size: .84rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(255,255,255,.42);
+      max-width: 400px;
     }
 
     .clients__count {
+      flex-shrink: 0;
       font-size: .64rem;
       font-weight: 600;
       color: rgba(255,255,255,.18);
       letter-spacing: .1em;
+      padding-top: 4px;
     }
 
-    .clients__track {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    /* Spectrum strip */
+    .clients__spectrum {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 36px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
 
-    .clients__reel {
-      display: flex;
-      gap: 14px;
-      width: max-content;
-      animation: marquee 28s linear infinite;
-    }
-
-    .clients__reel:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .clients__reel { animation: none; }
-    }
-
-    .client-card {
-      flex-shrink: 0;
-      width: 210px;
-      height: 130px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 14px;
+    .clients__stage {
       display: flex;
       flex-direction: column;
+      gap: 6px;
+    }
+
+    .clients__stage:nth-child(3) { text-align: center; align-items: center; }
+    .clients__stage:nth-child(5) { text-align: right; align-items: flex-end; }
+
+    .clients__stage-label {
+      font-size: .58rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+    }
+
+    .clients__stage-range {
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      font-weight: 900;
+      letter-spacing: -.05em;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .clients__stage-desc {
+      font-size: .62rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .02em;
+    }
+
+    .clients__stage-arrow {
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      padding: 0 20px;
+      color: rgba(141,82,255,.4);
+      font-size: 1.1rem;
+    }
+
+    /* ── INSTAGRAM PORTFOLIO GRID ── */
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(218px, 1fr));
+      grid-auto-rows: 1fr;
+      gap: 14px;
+    }
+
+    .insta-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px;
+      min-height: 238px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 20px;
+      text-decoration: none;
+      color: inherit;
+      transition:
+        background 240ms ease,
+        border-color 240ms ease,
+        transform 300ms cubic-bezier(.16,1,.3,1),
+        box-shadow 300ms cubic-bezier(.16,1,.3,1);
       position: relative;
       overflow: hidden;
-      transition: border-color 220ms ease, background 220ms ease;
     }
 
-    @media (hover: hover) {
-      .client-card:hover {
-        background: rgba(255,255,255,.05);
-        border-color: rgba(255,255,255,.13);
-      }
-    }
-
-    .client-card::before {
+    .insta-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,0) 55%);
+      background: linear-gradient(135deg, rgba(255,255,255,.03) 0%, rgba(255,255,255,0) 60%);
       pointer-events: none;
     }
 
-    .client-card__placeholder {
-      width: 56px;
-      height: 4px;
-      border-radius: 2px;
-      background: rgba(255,255,255,.1);
+    @media (hover: hover) {
+      .insta-card:hover {
+        background: rgba(255,255,255,.055);
+        border-color: rgba(141,82,255,.32);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(141,82,255,.12);
+      }
     }
 
-    .client-card__label {
-      font-size: .58rem;
-      font-weight: 700;
-      letter-spacing: .12em;
+    .insta-card__header {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    /* Instagram gradient ring */
+    .insta-card__ring {
+      flex-shrink: 0;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+      padding: 2.5px;
+    }
+
+    .insta-card__avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #0c0812;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .insta-card__photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .insta-card__initials {
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.65);
+    }
+
+    .insta-card__info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .insta-card__name {
+      display: block;
+      font-size: .86rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 3px;
+    }
+
+    .insta-card__handle {
+      display: block;
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .01em;
+      color: rgba(255,255,255,.38);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .insta-card__niche {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 8px;
+      padding: 3px 9px;
+      background: rgba(141,82,255,.12);
+      border: 1px solid rgba(141,82,255,.2);
+      border-radius: 999px;
+      font-size: .56rem;
+      font-weight: 800;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.18);
+      color: var(--purple-light);
     }
 
-    @media (max-width: 480px) {
+    /* Metrics + services panel */
+    .insta-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+    }
+
+    .insta-card__stat-num {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -.06em;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .insta-card__stat-label {
+      display: block;
+      font-size: .54rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+      margin-top: 4px;
+    }
+
+    .insta-card__svcs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: flex-end;
+    }
+
+    .insta-card__svc-tag {
+      padding: 3px 8px;
+      background: rgba(141,82,255,.08);
+      border: 1px solid rgba(141,82,255,.16);
+      border-radius: 6px;
+      font-size: .52rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      opacity: .8;
+    }
+
+    .insta-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-top: 2px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .insta-card__cta {
+      flex-shrink: 0;
+      font-size: .58rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 160ms ease, gap 160ms ease;
+    }
+
+    .insta-card__cta::after {
+      content: "→";
+      transition: transform 160ms ease;
+    }
+
+    @media (hover: hover) {
+      .insta-card:hover .insta-card__cta {
+        color: var(--white);
+      }
+      .insta-card:hover .insta-card__cta::after {
+        transform: translateX(3px);
+      }
+    }
+
+    /* Instagram icon badge */
+    .insta-card__ig {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 16px;
+      height: 16px;
+      opacity: .18;
+    }
+
+    @media (max-width: 640px) {
+      .insta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .insta-card {
+        padding: 14px;
+        gap: 12px;
+      }
+      .insta-card__ring {
+        width: 54px;
+        height: 54px;
+      }
+      .insta-card__name {
+        font-size: .78rem;
+      }
+      .insta-card__handle {
+        font-size: .6rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .insta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
       .clients__head {
         flex-direction: column;
-        gap: 6px;
+        gap: 16px;
         margin-bottom: 24px;
+      }
+      .clients__spectrum {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px 0;
+      }
+      .clients__stage-arrow { display: none; }
+      .clients__stage:nth-child(3),
+      .clients__stage:nth-child(5) {
+        text-align: left;
+        align-items: flex-start;
       }
     }
 
@@ -1226,66 +1500,344 @@
     <div class="clients__inner">
 
       <div class="clients__head">
-        <span class="clients__kicker" id="clients-heading">Quem confia em nós</span>
-        <span class="clients__count" aria-hidden="true">— em breve</span>
+        <div>
+          <span class="clients__kicker" id="clients-heading">Portfólio de Clientes</span>
+          <h2 class="clients__headline">Do zero<br>aos <em>6 dígitos.</em></h2>
+          <p class="clients__desc">Trabalhamos com perfis em qualquer estágio de crescimento, do primeiro post até audiências consolidadas de seis dígitos.</p>
+        </div>
+        <span class="clients__count" aria-hidden="true">11 marcas</span>
       </div>
 
-      <div class="clients__track">
-        <div class="clients__reel" role="list">
-
-          <!-- set 1 -->
-          <div class="client-card" role="listitem">
-            <span class="client-card__placeholder" aria-hidden="true"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem">
-            <span class="client-card__placeholder" aria-hidden="true"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem">
-            <span class="client-card__placeholder" aria-hidden="true"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem">
-            <span class="client-card__placeholder" aria-hidden="true"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem">
-            <span class="client-card__placeholder" aria-hidden="true"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem">
-            <span class="client-card__placeholder" aria-hidden="true"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-
-          <!-- set 2 — duplicado para loop seamless -->
-          <div class="client-card" role="listitem" aria-hidden="true">
-            <span class="client-card__placeholder"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem" aria-hidden="true">
-            <span class="client-card__placeholder"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem" aria-hidden="true">
-            <span class="client-card__placeholder"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem" aria-hidden="true">
-            <span class="client-card__placeholder"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem" aria-hidden="true">
-            <span class="client-card__placeholder"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-          <div class="client-card" role="listitem" aria-hidden="true">
-            <span class="client-card__placeholder"></span>
-            <span class="client-card__label">Em breve</span>
-          </div>
-
+      <div class="clients__spectrum" aria-hidden="true">
+        <div class="clients__stage">
+          <span class="clients__stage-label">Criado do zero</span>
+          <strong class="clients__stage-range">545 → 2,8K</strong>
+          <span class="clients__stage-desc">seguidores</span>
         </div>
+        <span class="clients__stage-arrow">→</span>
+        <div class="clients__stage">
+          <span class="clients__stage-label">Em crescimento</span>
+          <strong class="clients__stage-range">4,1K → 21K</strong>
+          <span class="clients__stage-desc">seguidores</span>
+        </div>
+        <span class="clients__stage-arrow">→</span>
+        <div class="clients__stage">
+          <span class="clients__stage-label">Grande audiência</span>
+          <strong class="clients__stage-range">115K → 123K</strong>
+          <span class="clients__stage-desc">seguidores</span>
+        </div>
+      </div>
+
+      <div class="insta-grid">
+
+        <!-- Matheus Scarlatte -->
+        <a class="insta-card" href="https://www.instagram.com/matheusscarlatte/" target="_blank" rel="noopener noreferrer" aria-label="Matheus Scarlatte no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-matheusscarlatte.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">MS</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Matheus Scarlatte</strong>
+              <span class="insta-card__handle">@matheusscarlatte</span>
+              <span class="insta-card__niche">Advocacia · Direito</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">6,9K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Site</span>
+              <span class="insta-card__svc-tag">Estratégia</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Dr. Douglas Pessanha -->
+        <a class="insta-card" href="https://www.instagram.com/dr.douglaspessanha/" target="_blank" rel="noopener noreferrer" aria-label="Dr. Douglas Pessanha no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-dr_douglaspessanha.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">DP</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Dr. Douglas Pessanha</strong>
+              <span class="insta-card__handle">@dr.douglaspessanha</span>
+              <span class="insta-card__niche">Medicina · Performance</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">4,1K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Tráfego</span>
+              <span class="insta-card__svc-tag">Site</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- MindPop -->
+        <a class="insta-card" href="https://www.instagram.com/mindpopbr/" target="_blank" rel="noopener noreferrer" aria-label="MindPop no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-mindpopbr.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">MP</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">MindPop</strong>
+              <span class="insta-card__handle">@mindpopbr</span>
+              <span class="insta-card__niche">Saúde Mental · Tech</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">2,8K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Tech</span>
+              <span class="insta-card__svc-tag">Criação</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Dra. Paula Peres -->
+        <a class="insta-card" href="https://www.instagram.com/dra.paulaperes/" target="_blank" rel="noopener noreferrer" aria-label="Dra. Paula Peres no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-dra_paulaperes.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">PP</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Dra. Paula Peres</strong>
+              <span class="insta-card__handle">@dra.paulaperes</span>
+              <span class="insta-card__niche">Medicina · Mentoria</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">123K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Site</span>
+              <span class="insta-card__svc-tag">Estratégia</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- KGeN -->
+        <a class="insta-card" href="https://www.instagram.com/kgen_br/" target="_blank" rel="noopener noreferrer" aria-label="KGeN no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-kgen_br.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">KG</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">KGeN Brasil</strong>
+              <span class="insta-card__handle">@kgen_br</span>
+              <span class="insta-card__niche">Inovação · Tech</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">21K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Criação</span>
+              <span class="insta-card__svc-tag">Estratégia</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Bianca Obrelli -->
+        <a class="insta-card" href="https://www.instagram.com/adv.biancaobrelli/" target="_blank" rel="noopener noreferrer" aria-label="Bianca Obrelli no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-adv_biancaobrelli.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">BO</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Bianca Obrelli</strong>
+              <span class="insta-card__handle">@adv.biancaobrelli</span>
+              <span class="insta-card__niche">Advocacia · Direito</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">1,4K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Site</span>
+              <span class="insta-card__svc-tag">Criação</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Isabella Montoro -->
+        <a class="insta-card" href="https://www.instagram.com/draisabellamontoro/" target="_blank" rel="noopener noreferrer" aria-label="Isabella Montoro no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-draisabellamontoro.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">IM</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Isabella Montoro</strong>
+              <span class="insta-card__handle">@draisabellamontoro</span>
+              <span class="insta-card__niche">Estética · Medicina</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">7,9K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Site</span>
+              <span class="insta-card__svc-tag">Criação</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Thaisa Palla -->
+        <a class="insta-card" href="https://www.instagram.com/thaisapalla/" target="_blank" rel="noopener noreferrer" aria-label="Thaisa Palla no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-thaisapalla.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">TP</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Thaisa Palla</strong>
+              <span class="insta-card__handle">@thaisapalla</span>
+              <span class="insta-card__niche">Advocacia · Direito</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">115K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Tráfego</span>
+              <span class="insta-card__svc-tag">Estratégia</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Esfihou W -->
+        <a class="insta-card" href="https://www.instagram.com/esfihouw/" target="_blank" rel="noopener noreferrer" aria-label="Esfihou W no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-esfihouw.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">EW</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Esfihouw</strong>
+              <span class="insta-card__handle">@esfihouw</span>
+              <span class="insta-card__niche">Gastronomia · Food</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">2,6K</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Tráfego</span>
+              <span class="insta-card__svc-tag">Criação</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Exora Soluções -->
+        <a class="insta-card" href="https://www.instagram.com/exora.solucoes/" target="_blank" rel="noopener noreferrer" aria-label="Exora Soluções no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-exora_solucoes.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">EX</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Exora Soluções</strong>
+              <span class="insta-card__handle">@exora.solucoes</span>
+              <span class="insta-card__niche">Consultoria · Growth</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">545</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Estratégia</span>
+              <span class="insta-card__svc-tag">Site</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
+        <!-- Palla Advogados -->
+        <a class="insta-card" href="https://www.instagram.com/palla.advogados/" target="_blank" rel="noopener noreferrer" aria-label="Palla Advogados no Instagram">
+          <svg class="insta-card__ig" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <div class="insta-card__header">
+            <div class="insta-card__ring"><div class="insta-card__avatar">
+              <img class="insta-card__photo" src="assets/images/ig-palla_advogados.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="insta-card__initials">PA</span>
+            </div></div>
+            <div class="insta-card__info">
+              <strong class="insta-card__name">Palla Advogados</strong>
+              <span class="insta-card__handle">@palla.advogados</span>
+              <span class="insta-card__niche">Advocacia · Escritório</span>
+            </div>
+          </div>
+          <div class="insta-card__meta">
+            <div class="insta-card__stat">
+              <strong class="insta-card__stat-num">795</strong>
+              <span class="insta-card__stat-label">seguidores</span>
+            </div>
+            <div class="insta-card__svcs">
+              <span class="insta-card__svc-tag">Gestão</span>
+              <span class="insta-card__svc-tag">Site</span>
+              <span class="insta-card__svc-tag">Tráfego</span>
+            </div>
+          </div>
+          <div class="insta-card__footer"><span class="insta-card__cta">Ver perfil</span></div>
+        </a>
+
       </div>
 
     </div>
@@ -1309,7 +1861,7 @@
           </div>
           <div class="team__info">
             <h3 class="team__name">Alexandre<br>Nasrallah</h3>
-            <p class="team__role">— em breve</p>
+            <p class="team__role">em breve</p>
             <p class="team__bio">Em breve.</p>
             <div class="team__tags">
               <span class="team__tag">Em breve</span>
@@ -1327,7 +1879,7 @@
           </div>
           <div class="team__info">
             <h3 class="team__name">Gabriel<br>Domingos</h3>
-            <p class="team__role">— em breve</p>
+            <p class="team__role">em breve</p>
             <p class="team__bio">Em breve.</p>
             <div class="team__tags">
               <span class="team__tag">Em breve</span>
