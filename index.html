@@ -932,7 +932,10 @@
     }
 
     @media (max-width: 640px) {
-      .hero { padding: 20px 18px 28px; }
+      .hero {
+        padding: 20px 18px 36px;
+        grid-template-rows: auto clamp(32px, 6vh, 80px) auto;
+      }
 
       .hero__title { font-size: clamp(3rem, 14vw, 5.5rem); }
 
